@@ -1,0 +1,46 @@
+// function should print the nodes at k distance from root
+int height(Node *root)
+{
+  int h = 0;
+  if(root != NULL)
+  {
+    int lHeight = height(root->left);
+    int rHeight = height(root->right);
+    int maxHeight = max(lHeight,rHeight);
+    h = maxHeight + 1;
+  }
+  return h;
+}
+int helper(struct Node*root, int k, vector<int>& arr,int h){
+    if(k==0)
+    {arr.push_back(root->data);
+    return 0; }
+    
+
+    if(k<0)return 0;
+    if(k>h)return 0;
+
+        
+        if(root->left)
+        helper(root->left,k-1,arr,h);
+        
+        if(root->right!=NULL)
+    helper(root->right, k-1, arr, h);
+        
+        
+        
+    
+    }
+    
+  
+    
+  
+
+
+vector<int> Kdistance(struct Node *root, int k)
+{
+  vector<int> arr;
+  int h=height(root);
+  helper(root, k, arr, h);
+  return arr;
+}
