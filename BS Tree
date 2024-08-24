@@ -1,1 +1,39 @@
+#include<bits/stdc++.h>
+struct Node{
+	int data;
+	Node* left;
+	Node* right;
+	Node(int value){
+		data=value;
+        left=right=nullptr;
+	}
+};
 
+
+
+bool isBST(Node * node){
+	if(node==nullptr)return true;
+
+	if(node->left!=nullptr&&maxValue(node->left)>=node->data)return false;
+
+	if(node->right!=nullptr&&minValue(node->right)<=node->data)return false;
+
+	if(!isBST(node->left)||isBST(node->right))return false;
+
+	return true;
+}
+int main(){
+   
+   Node* root=new Node(6);
+   root->left=new Node(5);
+   root->right=new Node(8);
+
+   //code to get the treee by some better method:
+
+   if(isBST(Node * root)){
+   	cout<<"Is BST";
+   }
+   else
+   	cout<<"Not a BST";
+
+}
